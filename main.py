@@ -2,6 +2,7 @@ from divia_api import DiviaAPI
 from flask import Flask, request
 from datetime import datetime
 from json import dumps
+from waitress import serve
 
 app = Flask(__name__)
 
@@ -15,4 +16,9 @@ def divia():
         rt.append(str(round((r - now).total_seconds() / 60)))
     return dumps(rt)
 
-app.run(host="0.0.0.0")
+
+if __name__ == "__main__":
+    try:
+        serve(app, port=5000, host="0.0.0.0")
+    except KeyboardInterrupt:
+        pass
