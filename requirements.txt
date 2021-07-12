@@ -1,2 +1,3 @@
 flask
 divia-api
+waitress
